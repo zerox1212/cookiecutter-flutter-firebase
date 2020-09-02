@@ -3,7 +3,6 @@
 // in the LICENSE file.
 
 import 'package:app/architecture//uuid.dart';
-import 'package:todos_repository/todos_repository.dart';
 
 class AppState {
   bool isLoading;
@@ -84,30 +83,32 @@ class Todo {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Todo &&
-          runtimeType == other.runtimeType &&
-          complete == other.complete &&
-          task == other.task &&
-          note == other.note &&
-          id == other.id;
+          other is Todo &&
+              runtimeType == other.runtimeType &&
+              complete == other.complete &&
+              task == other.task &&
+              note == other.note &&
+              id == other.id;
 
   @override
   String toString() {
     return 'Todo{complete: $complete, task: $task, note: $note, id: $id}';
   }
-
-  TodoEntity toEntity() {
-    return TodoEntity(task, id, note, complete);
-  }
-
-  static Todo fromEntity(TodoEntity entity) {
-    return Todo(
-      entity.task,
-      complete: entity.complete ?? false,
-      note: entity.note,
-      id: entity.id ?? Uuid().generateV4(),
-    );
-  }
 }
+
+  // FIXME implement firebase
+//  TodoEntity toEntity() {
+//    return TodoEntity(task, id, note, complete);
+//  }
+//
+//  static Todo fromEntity(TodoEntity entity) {
+//    return Todo(
+//      entity.task,
+//      complete: entity.complete ?? false,
+//      note: entity.note,
+//      id: entity.id ?? Uuid().generateV4(),
+//    );
+//  }
+//}
 
 enum VisibilityFilter { all, active, completed }
